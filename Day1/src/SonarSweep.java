@@ -5,22 +5,11 @@ import java.util.Scanner;
 
 public class SonarSweep {
     public static void main(String[] args) throws FileNotFoundException {
-        ArrayList<Integer> data = new ArrayList<Integer>();
-        ArrayList<Integer> data2 = new ArrayList<Integer>();
-
-
-        File file = new File("C:\\Users\\Vikto\\OneDrive - Syddansk Universitet\\Software Engineering\\SEMESTER_1\\Objektorienteret Programmering\\AdventOfCode\\Day1\\src\\data.txt");
-
-        Scanner reader = new Scanner(file);
-        while (reader.hasNextLine()) {
-            data.add(Integer.valueOf(reader.nextLine()));
-        }
+        ArrayList<Integer> data = file_to_array_int("Day1/src/data.txt");
 
         System.out.println(num_of_increase(data));
+
         System.out.println(num_of_increase(three_measure_sum(data)));
-
-
-
     }
 
     public static int num_of_increase(ArrayList<Integer> int_list) {
@@ -32,7 +21,6 @@ public class SonarSweep {
             }
             prev = i;
         }
-
         return num;
     }
 
@@ -44,11 +32,20 @@ public class SonarSweep {
 
             int sum = int_list.get(i) + int_list.get(i + 1) + int_list.get(i + 2);
             new_list.add(sum);
-
         }
         return new_list;
     }
 
+    public static ArrayList<Integer> file_to_array_int(String pathname) throws FileNotFoundException {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        File file = new File(pathname);
+
+        Scanner reader = new Scanner(file);
+        while (reader.hasNextLine()) {
+            list.add(Integer.valueOf(reader.nextLine()));
+        }
+        return list;
+    }
 }
 
 
