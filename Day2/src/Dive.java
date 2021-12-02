@@ -6,14 +6,13 @@ import java.util.Scanner;
 
 public class Dive {
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(deepDive("Day2/src/directions.txt"));
+        System.out.println(deepDivePartOne("Day2/src/directions.txt"));
 
     }
 
-    public static int deepDive(String pathname) throws FileNotFoundException {
+    public static int deepDivePartOne(String pathname) throws FileNotFoundException {
         int forward_sum = 0;
-        int up_sum = 0;
-        int down_sum = 0;
+        int vertical_sum = 0;
 
         File file = new File(pathname);
 
@@ -24,15 +23,16 @@ public class Dive {
                     forward_sum += reader.nextInt();
                     break;
                 case "up":
-                    up_sum += reader.nextInt();
+                    vertical_sum -= reader.nextInt();
                     break;
                 case "down":
-                    down_sum += reader.nextInt();
+                    vertical_sum += reader.nextInt();
                     break;
             }
         }
         reader.close();
 
-        return forward_sum*(down_sum-up_sum);
+        return forward_sum*vertical_sum;
     }
+
 }
