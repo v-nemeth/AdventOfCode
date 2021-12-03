@@ -15,16 +15,8 @@ public class Binary {
         System.out.println(rating(myList,0,"CO2"));
         //2693
 
-
-
     }
-
-    public static String oxygen_generator_rating(ArrayList<String> list){
-        String finalString = "";
-
-        return finalString;
-    }
-
+    
     public static boolean most_of(ArrayList<String> list, int index,String rating){
         int most_of = 0;
 
