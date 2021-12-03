@@ -5,11 +5,6 @@ public class PartTwo {
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<String> myList = PartOne.file_to_string_array("Day3/src/report.txt");
 
-        System.out.println(rating(myList,0,"O"));
-        //509
-        System.out.println(rating(myList,0,"CO2"));
-        //2693
-
         String OxygenRating = rating(myList,0,"O").get(0);
         String CO2Rating = rating(myList,0,"CO2").get(0);
 
