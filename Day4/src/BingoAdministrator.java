@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class BingoAdministrator {
@@ -9,12 +10,21 @@ public class BingoAdministrator {
 
     public ArrayList<Integer> num;
     public ArrayList<Bingo> boards = new ArrayList<Bingo>();
+    public LinkedList<Bingo> winnerboards = new LinkedList<Bingo>();
 
     public BingoAdministrator(String filename){
         loadBingoBoards(filename);
         num = string_to_array(numbers);
     }
 
+    public void drawNumber(int num){
+        for (Bingo board: boards) {
+            board.drawNumber(num);
+            if(board.checkWin()){
+                winnerboards.add(board);
+            }
+        }
+    }
 
     public void loadBingoBoards(String filename){
         File file = new File(filename);

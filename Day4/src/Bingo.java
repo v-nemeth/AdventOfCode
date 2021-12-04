@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Bingo {
     private ArrayList<Integer> board = new ArrayList<Integer>();
     private int size = 3;
+    private boolean win = false;
     private ArrayList<Integer> marked_indexes = new ArrayList<Integer>();
     public int currentNumber = 0;
 
@@ -13,6 +14,7 @@ public class Bingo {
     }
 
     public boolean checkWin() {
+        if(win)return false;
         int victory_count_row = 0;
         int victory_count_column = 0;
 
@@ -22,7 +24,7 @@ public class Bingo {
                     if (marked_indexes.get(i) == x + (y * size)) {victory_count_row += 1;}
                 }
             }
-            if (victory_count_row == size) {return true;}
+            if (victory_count_row == size) {win = true;return true;}
             victory_count_row = 0;
         }
 
@@ -32,14 +34,15 @@ public class Bingo {
                     if (marked_indexes.get(i) == x + (y * size)) {victory_count_column += 1;}
                 }
             }
-            if (victory_count_column == size) {return true;}
+            if (victory_count_column == size) {win = true;return true;}
             victory_count_column = 0;
         }
+
         return false;
     }
 
     public void drawNumber(int num) {
-        currentNumber = num;
+        if(!win) currentNumber = num; else return;
         for (int i : board) {
             if (num == i) {
                 marked_indexes.add(board.indexOf(i));
@@ -58,7 +61,6 @@ public class Bingo {
     }
     public int get_sum(){
         int sum = 0;
-        int neg = 0;
         for (int i:board) {
             sum += i;
         }
