@@ -25,8 +25,16 @@ public class Bingo {
             if (victory_count_row == size) {return true;}
             victory_count_row = 0;
         }
-        if (victory_count_column == size){return true;}
 
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                for (int i = 0; i < marked_indexes.size(); i++) {
+                    if (marked_indexes.get(i) == x + (y * size)) {victory_count_column += 1;}
+                }
+            }
+            if (victory_count_column == size) {return true;}
+            victory_count_column = 0;
+        }
         return false;
     }
 
@@ -50,9 +58,14 @@ public class Bingo {
     }
     public int get_sum(){
         int sum = 0;
+        int neg = 0;
         for (int i:board) {
             sum += i;
         }
+        for (int i:marked_indexes) {
+            sum -= board.get(i);
+        }
+
         return sum;
     }
 }
